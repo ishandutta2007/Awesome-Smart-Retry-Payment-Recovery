@@ -9,22 +9,17 @@
 
 ## 📋 Table of Contents
 
+- [Sector Overview & Market Dynamics](#-sector-overview--market-dynamics)
 - [SaaS / Hosted Platforms](#-saas--hosted-platforms)
-  - [Stripe Smart Retries](#stripe-smart-retries)
-  - [Chargebee Smart Dunning](#chargebee-smart-dunning)
-  - [Churn Buster](#churn-buster)
-  - [Butter Payments](#butter-payments)
-  - [FlexPay](#flexpay)
-  - [Gravy Solutions](#gravy-solutions)
-  - [Recurly Revenue Optimization](#recurly-revenue-optimization)
-  - [Zuora Payment Retries](#zuora-payment-retries)
-  - [Paddle Retain](#paddle-retain)
 - [Open-Source Software](#-open-source-software)
-  - [Recurso](#recurso)
-  - [Lago](#lago)
-  - [Kill Bill](#kill-bill)
 - [Comparison at a Glance](#-comparison-at-a-glance)
 - [Contributing](#-contributing)
+
+---
+
+## 📈 Sector Overview & Market Dynamics
+
+The subscription payment recovery and smart dunning sector addresses an estimated **$129+ billion annual loss** in involuntary churn and failed recurring payments globally, with passive declines accounting for 20% to 40% of all subscription subscriber cancellations. The market is **moderately fragmented**: core payment processors (e.g., Stripe, Adyen) provide baseline algorithmic retries in a high-concentration gateway layer, while specialized AI recovery engines, multi-gateway orchestrators, and high-touch retention services capture substantial independent market share through cross-processor intelligence and multi-channel customer dunning.
 
 ---
 
