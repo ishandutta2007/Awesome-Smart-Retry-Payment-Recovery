@@ -43,40 +43,59 @@ Commercial, cloud-hosted Smart Retry and Payment Recovery platforms.
 
 ## 🟩 Open-Source Software
 
-Self-hosted, community-driven Smart Retry and Payment Recovery tools. The open-source ecosystem for **dedicated payment recovery** is extremely limited; available options are billing engines that include dunning as a feature.
+Self-hosted, community-driven Smart Retry, Billing, and Payment Recovery tools, sorted by GitHub popularity.
 
-### Recurso
+### [Lago](https://github.com/getlago/lago) [![Stars](https://img.shields.io/github/stars/getlago/lago?style=social&color=white)](https://github.com/getlago/lago/stargazers)
+**Stack:** Ruby / Go / PostgreSQL / Redis | **License:** AGPL-3.0  
+Lago is an open-source metering and billing engine built for usage-based, subscription, and hybrid pricing models. It calculates real-time customer usage fees, generates invoices, and automates collection lifecycles across Stripe, Adyen, and GoCardless. While retry execution can be delegated to connected payment gateways or orchestrators, Lago orchestrates automated overdue invoice statuses, customer notification webhooks, and grace-period management.  
+**Best for:** Developers looking for modern self-hosted recurring and usage billing infrastructure with automated invoice tracking.
+
+### [Flexprice](https://github.com/flexprice/flexprice) [![Stars](https://img.shields.io/github/stars/flexprice/flexprice?style=social&color=white)](https://github.com/flexprice/flexprice/stargazers)
+**Stack:** Go / PostgreSQL / ClickHouse | **License:** Apache-2.0  
+Flexprice is an open-source, event-driven pricing, metering, and billing engine designed for AI and SaaS companies. It features modular subscription lifecycle management, payment status synchronization, and configurable invoice dunning hooks to handle failed recurring collections and payment status reconciliation across payment providers.  
+**Best for:** High-volume AI and SaaS applications requiring resilient event metering paired with invoice lifecycle automation.
+
+### [Kill Bill](https://github.com/killbill/killbill) [![Stars](https://img.shields.io/github/stars/killbill/killbill?style=social&color=white)](https://github.com/killbill/killbill/stargazers)
+**Stack:** Java / MySQL / MariaDB / PostgreSQL | **License:** Apache-2.0  
+Kill Bill is an enterprise-grade open-source subscription billing and payments platform. It includes native **overdue and dunning state machines** with fully customizable retry policies (configurable payment attempt intervals, grace periods, account status changes, and cancellation cascades). Gateway plugins for Stripe, Adyen, PayPal, and Braintree provide resilient payment execution.  
+**Best for:** Enterprise architectures requiring complete sovereign control over billing logic, customizable dunning state machines, and multi-gateway payment retries.
+
+### [Laravel Cashier (Stripe)](https://github.com/laravel/cashier-stripe) [![Stars](https://img.shields.io/github/stars/laravel/cashier-stripe?style=social&color=white)](https://github.com/laravel/cashier-stripe/stargazers)
+**Stack:** PHP / Laravel | **License:** MIT  
+Laravel Cashier provides an expressive interface to Stripe's subscription billing services. It natively handles webhook-driven payment failures, subscription grace periods, incomplete payment confirmations (3D Secure SCA challenges), payment method updates, and automated customer notifications when recurring subscription charges fail.  
+**Best for:** Laravel and PHP developers needing battle-tested, native handling of Stripe subscription dunning and payment retry lifecycles.
+
+### [FOSSBilling](https://github.com/FOSSBilling/FOSSBilling) [![Stars](https://img.shields.io/github/stars/FOSSBilling/FOSSBilling?style=social&color=white)](https://github.com/FOSSBilling/FOSSBilling/stargazers)
+**Stack:** PHP / MySQL | **License:** Apache-2.0  
+FOSSBilling is a lightweight, open-source client management, invoicing, and recurring billing application. It features automated invoice generation, payment reminder schedules, customizable overdue suspension workflows, and payment gateway retry modules for subscription services and hosting providers.  
+**Best for:** Small-to-medium digital businesses, hosting companies, and agencies wanting lightweight self-hosted dunning and recurring billing.
+
+### [Recurso](https://github.com/recurso-dev/recurso) [![Stars](https://img.shields.io/github/stars/recurso-dev/recurso?style=social&color=white)](https://github.com/recurso-dev/recurso/stargazers)
 **Stack:** Go / PostgreSQL / TigerBeetle (optional) | **License:** MIT  
-Recurso is an open-source billing engine for SaaS with subscriptions, invoicing, multi-currency payments, and a **bandit-retry engine for dunning** alongside a Collections operator layer [citation:11]. It includes a built-in double-entry ledger with ASC 606 revenue recognition, usage-based billing with exact rational math, and self-serve importers from Stripe and Chargebee [citation:11]. Integrates with Stripe, Razorpay, GoCardless, and Adyen for payments, and syncs to QuickBooks, Xero, NetSuite, and Tally [citation:11]. Deploys with a single `make demo` command for local testing [citation:11]. **Trade-off:** The dunning engine is one feature within a broader billing platform, not a standalone recovery service with human tuning or multi-platform support.  
-**Best for:** Teams wanting an MIT-licensed billing engine with dunning built in, accepting that retry optimization is algorithmic rather than ML-driven with human tuning.
-
-### Lago
-**Stack:** Ruby / PostgreSQL / Redis | **License:** AGPL-3.0  
-Lago is an open-source billing engine for usage-based and subscription pricing, explicitly positioned as an alternative to Chargebee, Recurly, and Stripe Billing. It calculates charges and pushes invoices to Stripe, Adyen, or GoCardless for collection. **Limitation for recovery:** Lago does not process payments itself and does not include a dedicated smart retry engine — dunning and retry logic would need to be implemented on top of the invoicing layer, or delegated to the connected payment gateway.  
-**Best for:** Teams wanting open-source usage billing with Stripe collection, accepting that smart retry logic must come from Stripe or custom implementation.
-
-### Kill Bill
-**Stack:** Java / MySQL/MariaDB/PostgreSQL | **License:** Apache-2.0  
-Kill Bill is a mature open-source subscription billing platform with invoice and payment management. It supports overdue accounts and payment retries as part of its billing lifecycle, with configurable retry policies. Payment plugins for Stripe, Braintree, and Adyen handle gateway interactions. **Limitation:** Kill Bill provides the billing engine and retry primitives, but does not include an ML-driven smart retry algorithm or branded customer communication layer comparable to Churn Buster or Butter.  
-**Best for:** Teams wanting a permissively licensed billing platform with retry primitives they can configure, accepting that advanced recovery optimization is not built in.
+Recurso is an open-source billing engine featuring an innovative **multi-armed bandit retry engine for dunning** alongside a Collections operator layer. It algorithmically optimizes retry windows based on issuer feedback, includes a built-in double-entry ledger with ASC 606 revenue recognition, and integrates with Stripe, Razorpay, GoCardless, and Adyen.  
+**Best for:** Teams seeking an MIT-licensed billing core with algorithmic bandit-driven payment retries built in.
 
 ---
 
 ## 📊 Comparison at a Glance
 
 | Software | License | Stack | Smart Retry | Customer Comms | Platform Coverage | Self-Hosted | Best For |
-|----------|---------|-------|-------------|----------------|-------------------|-------------|----------|
+|:---|:---|:---|:---|:---|:---|:---|:---|
 | **Stripe Smart Retries** | Proprietary | Cloud | ✅ ML timing | ✅ Emails | Stripe only | ❌ | Stripe-native recovery |
-| **Chargebee Smart Dunning** | Proprietary | Cloud | ✅ ML (Scale+) | ✅ Emails | Chargebee only | ❌ | Chargebee Scale users |
-| **Churn Buster** | Proprietary | Cloud | ✅ Decline-code tuned | ✅ Branded email/SMS | 17+ platforms | ❌ | Multi-platform + human tuning |
-| **Butter Payments** | Proprietary | Cloud | ✅ Per-payment ML | (Check) | Stripe, Recharge, custom | ❌ | ML per-payment optimization |
-| **FlexPay** | Proprietary | Cloud | ✅ Scheduler | (Check) | (Check) | ❌ | API-driven retry control |
-| **Gravy Solutions** | Proprietary | Cloud (Human) | ✅ Custom cadence | ✅ Human outreach | Services businesses | ❌ | Human-led service recovery |
-| **Recurly** | Proprietary | Cloud | ✅ AI (All-Access) | ✅ | Recurly only | ❌ | Recurly All-Access users |
-| **Zuora** | Proprietary | Cloud | ✅ AI configurable | ✅ | Zuora only | ❌ | Zuora enterprises |
-| **Recurso** | MIT | Go/Postgres | ✅ Bandit engine | (Check) | Stripe, Razorpay, GoCardless | ✅ | Open-source billing + dunning |
-| **Lago** | AGPL-3.0 | Ruby/Postgres | ❌ (Via gateway) | ❌ | Stripe, Adyen, GoCardless | ✅ | OSS billing → Stripe collection |
-| **Kill Bill** | Apache-2.0 | Java/DB | ✅ Configurable | (Check) | Via plugins | ✅ | OSS billing with retry primitives |
+| **Zuora Payment Retries** | Proprietary | Cloud | ✅ AI configurable | ✅ | Enterprise multi-gateway | ❌ | Enterprise volume |
+| **Paddle Retain** | Proprietary | Cloud | ✅ Algorithmic | ✅ Branded paywalls & emails | Paddle, Stripe, Chargebee | ❌ | SaaS dunning & cancel-save |
+| **Chargebee Smart Dunning** | Proprietary | Cloud | ✅ ML (Scale/Performance) | ✅ Emails | 30+ gateways | ❌ | Chargebee ecosystem |
+| **Recurly** | Proprietary | Cloud | ✅ AI (All-Access) | ✅ Dynamic dunning | Multi-gateway network | ❌ | High-volume subscription brands |
+| **Butter Payments** | Proprietary | Cloud | ✅ Per-payment ML | ❌ Silent recovery | Stripe, Recharge, Custom | ❌ | Pure ML recovery (zero customer spam) |
+| **Gravy Solutions** | Proprietary | Cloud (Human) | ✅ Custom cadence | ✅ Human calls & SMS | Stripe, Chargebee, CRMs | ❌ | High-touch services & coaching |
+| **FlexPay** | Proprietary | Cloud | ✅ Invisible Recovery™ | ✅ Engaged recovery | 40+ gateways & CRMs | ❌ | Frictionless bank-level recovery |
+| **Churn Buster** | Proprietary | Cloud | ✅ Decline-code tuned | ✅ Branded email/SMS | 17+ platforms | ❌ | Branded customer recovery |
+| **Lago** | AGPL-3.0 | Ruby/Go/Postgres | ⚠️ Gateway delegated | ✅ Webhooks / alerts | Stripe, Adyen, GoCardless | ✅ | Modern self-hosted usage billing |
+| **Flexprice** | Apache-2.0 | Go/Postgres/ClickHouse | ⚠️ Event hooks | ✅ Dunning hooks | Multi-provider | ✅ | AI & event-metered billing |
+| **Kill Bill** | Apache-2.0 | Java/DB | ✅ Configurable states | ✅ Custom templates | Via plugins (Stripe, Adyen, etc.) | ✅ | Open-source enterprise billing & dunning |
+| **Laravel Cashier** | MIT | PHP | ✅ Stripe integration | ✅ Dunning webhooks & SCA | Stripe | ✅ | PHP/Laravel subscription recovery |
+| **FOSSBilling** | Apache-2.0 | PHP/MySQL | ⚠️ Configurable reminders | ✅ Auto-reminders & suspend | 10+ gateways | ✅ | Lightweight billing & suspension |
+| **Recurso** | MIT | Go/Postgres | ✅ Bandit engine | ⚠️ Invoicing collection | Stripe, Razorpay, Adyen | ✅ | Open-source bandit retry engine |
 
 ---
 
