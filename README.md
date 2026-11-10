@@ -1,25 +1,41 @@
-# Awesome-Smart-Retry-Payment-Recovery
+<p align="center">
+  <img src="assets/banner.svg" alt="Awesome Smart Retry and Payment Recovery - Open-Source & SaaS Churn Prevention Directory" width="100%" />
+</p>
 
-# Awesome Smart Retry & Payment Recovery
+# Awesome Smart Retry & Payment Recovery [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/ishandutta2007/Awesome-Smart-Retry-Payment-Recovery/blob/main/README.md) [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg?style=flat-square)](https://creativecommons.org/publicdomain/zero/1.0/)
 
-> A curated list of top Smart Retry and Payment Recovery platforms — both SaaS/Hosted commercial solutions and open-source alternatives for recovering failed subscription payments, reducing involuntary churn, and optimizing retry logic.
-> 🌟 Star this repo if you find it useful! 🌟
+> A curated collection of top **Smart Retry**, **Payment Recovery**, and **Automated Dunning** platforms. Compare enterprise SaaS solutions and open-source engines to prevent involuntary churn, optimize credit card retry logic, orchestrate multi-gateway collections, and recover failed subscription payments.
 
 ---
 
 ## 📋 Table of Contents
 
 - [Sector Overview & Market Dynamics](#-sector-overview--market-dynamics)
+- [Key Features to Look For](#-key-features-to-look-for)
 - [SaaS / Hosted Platforms](#-saas--hosted-platforms)
 - [Open-Source Software](#-open-source-software)
 - [Comparison at a Glance](#-comparison-at-a-glance)
+- [Frequently Asked Questions (FAQ)](#-frequently-asked-questions-faq)
 - [Contributing](#-contributing)
+- [License](#-license)
 
 ---
 
 ## 📈 Sector Overview & Market Dynamics
 
 The subscription payment recovery and smart dunning sector addresses an estimated **$129+ billion annual loss** in involuntary churn and failed recurring payments globally, with passive declines accounting for 20% to 40% of all subscription subscriber cancellations. The market is **moderately fragmented**: core payment processors (e.g., Stripe, Adyen) provide baseline algorithmic retries in a high-concentration gateway layer, while specialized AI recovery engines, multi-gateway orchestrators, and high-touch retention services capture substantial independent market share through cross-processor intelligence and multi-channel customer dunning.
+
+---
+
+## 🔍 Key Features to Look For
+
+When evaluating smart retry systems and automated payment recovery platforms, look for these architectural capabilities:
+
+1. **Decline Code Intelligence:** Distinguishing between **hard declines** (e.g., stolen cards, closed accounts — retrying risks card scheme penalty fees) and **soft declines** (e.g., temporary bank outages, insufficient funds — safe to retry).
+2. **Context-Aware ML Retry Timing:** Scheduling retry attempts based on customer time zones, issuer behavior, local payday patterns, and historical approval rate distributions rather than fixed time intervals.
+3. **Automated Account Updater (AU):** Interfacing with Visa and Mastercard card account updating networks to refresh expired cards and updated tokens automatically.
+4. **Branded Multi-Channel Dunning:** High-deliverability email sequences, SMS alerts, and in-app paywalls (e.g., via headless snippets) that prompt subscribers to update expired payment details.
+5. **Multi-Gateway Fallback & Cascading:** Orchestrating backup merchant accounts and payment gateways when primary transactions encounter gateway outages or regional acquirer blocks.
 
 ---
 
@@ -96,6 +112,19 @@ Recurso is an open-source billing engine featuring an innovative **multi-armed b
 | **Laravel Cashier** | MIT | PHP | ✅ Stripe integration | ✅ Dunning webhooks & SCA | Stripe | ✅ | PHP/Laravel subscription recovery |
 | **FOSSBilling** | Apache-2.0 | PHP/MySQL | ⚠️ Configurable reminders | ✅ Auto-reminders & suspend | 10+ gateways | ✅ | Lightweight billing & suspension |
 | **Recurso** | MIT | Go/Postgres | ✅ Bandit engine | ⚠️ Invoicing collection | Stripe, Razorpay, Adyen | ✅ | Open-source bandit retry engine |
+
+---
+
+## ❓ Frequently Asked Questions (FAQ)
+
+### What is the difference between voluntary churn and involuntary churn?
+**Voluntary churn** happens when a subscriber intentionally cancels their plan (dissatisfaction, pricing, lack of use). **Involuntary churn** (passive churn) happens when a subscriber wants to stay subscribed, but their recurring payment fails due to expired payment cards, false fraud positives, daily bank limits, or temporary issuer outages.
+
+### What is Smart Retry logic?
+Unlike static retries (e.g., retrying blindly every 24 or 72 hours), **smart retry engines** employ machine learning models trained across millions of historical transactions to compute the optimal retry window. They factor in customer geography, issuer response patterns, card types, decline reason codes, and regional paydays to maximize payment settlement without incurring card network penalty flags.
+
+### Can automated retries trigger card network fines?
+Yes. Both Visa and Mastercard maintain strict limits on transaction re-attempts. Blindly hammering hard decline codes (such as stolen or closed account numbers) can lead to excessive retry fees or merchant account sanctions. Intelligent payment recovery platforms automatically suppress retries on unrecoverable decline codes.
 
 ---
 
