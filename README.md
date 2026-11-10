@@ -30,43 +30,19 @@
 
 ## 🟦 SaaS / Hosted Platforms
 
-Commercial, cloud-hosted Smart Retry and Payment Recovery platforms. These are not open-source but are included as reference points for feature comparison.
+Commercial, cloud-hosted Smart Retry and Payment Recovery platforms.
 
-### Stripe Smart Retries
-**Type:** ML-driven retry timing within Stripe Billing  
-Stripe Smart Retries use data points to find the optimal time to retry a failed payment, and are described as more effective than scheduled retries [citation:2]. Revenue recovery features include recovery analytics, automatic customer emails for failed payments and expiring cards, no-code automations for custom dunning flows, and automatic card updates [citation:2]. Setup is entirely no-code through the Stripe Dashboard [citation:2]. **Trade-off:** Limited to the Stripe ecosystem; you remain the merchant of record and own tax compliance.
-
-### Chargebee Smart Dunning
-**Type:** ML-powered retry optimization within Chargebee  
-Chargebee's Smart Dunning customizes retry frequency based on analysis of past transaction data and patterns to achieve better success rates, with up to 12 retries [citation:12]. It is available only on the Scale plan and above [citation:12]. Standard Dunning allows configurable retry counts (1-5 for direct debit) and final actions (mark unpaid, void, write-off, or reverse invoice) [citation:1]. **Trade-off:** Smart Dunning is gated to higher-tier plans; you must contact support to enable it [citation:12].
-
-### Churn Buster
-**Type:** Dedicated failed payment recovery with human tuning  
-Churn Buster has focused exclusively on subscription churn since 2013, handling 50+ million failed payments across $5+ billion in recurring revenue [citation:4]. Its differentiator is **retries paired with branded email and SMS sent from dedicated infrastructure on the brand's own domain** — retry-only tools send nothing to the customer [citation:4]. The team tunes retry timing by decline code and tests copy, send times, and campaign length. Pricing starts at $269/mo based on MRR tier, with a flat fee rather than a percentage of recovered revenue [citation:4]. Supports 17+ platforms including Stripe, Shopify, Recharge, Loop, Braintree, and Recurly [citation:4]. **Trade-off:** Not a platform-native solution; requires setup with the Churn Buster team (about an hour) [citation:15].
-
-### Butter Payments
-**Type:** ML-powered payment recovery with per-payment optimization  
-Butter processes each failed payment individually rather than in batches, building ML models customized to the business's subscription value, cadence, and regional customer base [citation:7]. It integrates directly with payment processors and subscription platforms including Stripe, Recharge, and custom in-house stacks [citation:7]. Butter operates on revenue-share contracts with no retainer fees, claiming 10%+ ARR growth from recovered payments [citation:7]. SOC 2 Type 2 and PCI DSS Level 2 compliant, with no PII required [citation:7].
-
-### FlexPay
-**Type:** Retry scheduling with API-driven control  
-FlexPay provides a Scheduler for auto-retries with API endpoints for payment status, stopping retries (via refund or redact), and reconciliation using `initialMerchantTransactionId` [citation:6]. Merchants can disable customer recovery per request and redact payment methods to block further transactions [citation:6]. Sandbox testing is available for integration validation [citation:6].
-
-### Gravy Solutions
-**Type:** Human-led recovery for service businesses  
-Gravy specializes in failed payment recovery for service-based businesses (memberships, courses, coaching), with a 30-day customized communication cadence rather than plug-and-play automation [citation:5]. The service handles access management (removing/restoring access), billing questions, upsells/downsells, and cancellation management on the client's behalf [citation:5]. Claims $10M recovered since 2020, with an average of $379K monthly recovered for services clients [citation:5]. **Trade-off:** Human-intensive and service-oriented rather than software-only.
-
-### Recurly Revenue Optimization
-**Type:** AI-powered churn prevention within Recurly  
-Recurly's All-Access plan includes intelligent churn-prevention tools with multiple dunning campaigns, AI-powered agents and analytics, and payments orchestration across multiple gateways [citation:8]. The Engage product adds an AI propensity-to-churn model, personalized offers, cancel-save flows, and A/B testing [citation:8]. Starter plans include only static churn-prevention tools and one dunning campaign [citation:8]. **Trade-off:** Advanced recovery features require the All-Access tier with a $1M billing volume minimum [citation:8].
-
-### Zuora Payment Retries
-**Type:** Configurable retries with AI optimization  
-Zuora provides configurable payment retry schedules with AI-driven algorithms to maximize recovery, plus automated customer notifications tied to retry schedules and real-time analytics on decline trends [citation:9]. Supports segmentation of customers to adjust retry logic, and distinguishing soft vs. hard declines to reduce transaction fees [citation:9].
-
-### Paddle Retain
-**Type:** Integrated retry and retention within Paddle  
-Paddle Retain (formerly ProfitWell Retain) uses its own algorithms built on billions of data points to reduce churn, and is fully integrated with Paddle Billing for automatic dunning and retention [citation:3]. It can also connect to external billing platforms including Braintree, Chargebee, and Chargify via read-only API access [citation:3]. Retain supports multi-user targeting via the ProfitWell.js snippet for in-app messages to past-due users [citation:14].
+| Product | Pricing (Starting Tier) | Free Tier / Trial Limits | Company Size (Valuation / Revenue) | Description & Key Features | Supported Platforms |
+|:---|:---|:---|:---|:---|:---|
+| [Stripe Smart Retries](https://stripe.com/billing) | 0.7% per recurring transaction (Stripe Billing) | Free forever baseline: Smart Retries included with no extra monthly fee; test mode sandbox included free | $70B Valuation / ~$4.2B Net Revenue | ML-driven retry optimization timing trained on billions of transaction data points across global Stripe card traffic; automatic card account updater | Stripe ecosystem |
+| [Zuora Payment Retries](https://www.zuora.com) | ~$45,000/year base contract ($3,750/mo) | No free forever tier; demo sandbox available on request for qualified prospective enterprise accounts | $1.7B Valuation (Silver Lake / GIC buyout) / ~$450M ARR | Enterprise AI-driven configurable retry engine distinguishing soft vs. hard declines; automated custom notification cadences and collections workflows | Enterprise multi-gateway |
+| [Paddle Retain](https://www.paddle.com/retain) | $500/mo flat fee or performance fee (% of recovered revenue) | Free trial via live churn / recovery audit on historical data; free metrics tracking via ProfitWell Metrics | $1.4B Valuation (Series D) / ~$100M ARR | Algorithmic churn reduction and dunning engine built on billions in SaaS metrics; in-app credit card update paywalls via ProfitWell.js | Paddle, Stripe, Chargebee, Braintree |
+| [Chargebee Smart Dunning](https://www.chargebee.com) | $599/mo (Performance Plan, billed annually) | Free Starter tier up to $250k lifetime billing (includes static dunning; Smart Dunning requires 14-day Performance trial or upgrade) | $3.5B Valuation (Series H) / ~$200M ARR | ML-powered dynamic retry timing adjusting attempt frequencies based on decline reasons, time zones, and bank behavior with up to 12 retries | 30+ gateways (Stripe, Braintree, Adyen) |
+| [Recurly Revenue Optimization](https://recurly.com) | $249/mo + 0.9% revenue (Starter Plan; All-Access custom) | 90-day free trial on Starter plan ($40,000 billing volume allowance included during trial) | $39M+ VC Funding / ~$55M–$60M Revenue | AI propensity-to-churn models, multi-gateway failover routing, statistical machine learning retry intervals, and dynamic cancel-save workflows | Recurly gateway network |
+| [Butter Payments](https://www.butterpayments.com) | Performance fee (custom revenue share of recovered revenue only; no retainer) | 30-day "First month free" trial of full recovery lift + free payment health & churn analysis audit | $100M Valuation (Series A) / ~$6M ARR ($37.5M raised) | Per-payment machine learning models tailored to card issuer behavior, subscription cadence, and geography; zero customer outreach spam | Stripe, Recharge, custom APIs |
+| [Gravy Solutions](https://gravysolutions.io) | $997/mo flat fee (custom-tailored based on MRR volume) | Free 30-day failed payment recovery audit of active subscriber accounts; no software-only free tier | $4.5M Series A / ~$7.2M Revenue ($43M raised) | Human-powered recovery combining US-based customer retention agents with custom SMS, phone outreach, and 30-day personalized cadences for digital products | Stripe, Infusionsoft, Chargebee |
+| [FlexPay](https://flexpay.io) | Performance fee / ROI-mapped custom fee (typically 10%–20% of recovered revenue) | Free payment decline & churn audit of historical batch records; developer sandbox credentials upon consultation | Seed/Series A / ~$6.5M–$7.2M ARR | Invisible Recovery™ using machine learning to analyze decline codes and bank algorithms for non-intrusive payment retries without client friction | 40+ gateways & CRMs |
+| [Churn Buster](https://churnbuster.io) | $269/mo (Starter Dunning based on MRR tier) | Free forever "Measure" tier (baseline payment churn analytics & tracking with zero monthly subscription cost) | Bootstrapped / Profitable ($5B+ processed) | Decline-code specific retry schedules combined with high-deliverability branded dunning emails and SMS sent from custom merchant domains | 17+ platforms (Stripe, Shopify, Recharge, Braintree) |
 
 ---
 
